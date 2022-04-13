@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Product Manager</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<style>
+	body {
+		background: linear-gradient(to right, #e6ae8c, #a8cecf);
+	}
+	table {
+		background-color: #FFFFFF;
+		max-width: 35%;
+	}
+</style>
+</head>
+<body>
+<div align="center">
+	<h1>產品管理表格</h1>
+	<a href="new">加入產品</a>
+	<br></br>
+	<table class="table table-bordered border-danger table-striped table-hover">
+		<thead>
+			<tr>
+				<th >產品ID</th>
+				<th >產品名稱</th>
+				<th >品牌</th>
+				<th >生產地</th>
+				<th >價格</th>
+				<th >編輯</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="product : ${listProducts}">
+				<td th:text="${product.id}">Product ID</td>
+				<td th:text="${product.name}">Name</td>
+				<td th:text="${product.brand}">Brand</td>
+				<td th:text="${product.madein}">Made in</td>
+				<td th:text="${product.price}">Price</td>
+				<td>
+					<a th:href="@{'/edit/' + ${product.id}}">異動</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/delete/' + ${product.id}}">刪除</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</body>
+</html>
